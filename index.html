@@ -81,7 +81,33 @@
       font-weight:800;line-height:1.06;letter-spacing:-.02em;color:#fff;margin-bottom:18px}
     h1 .grad{background:linear-gradient(135deg,var(--accent),var(--accent2));
       -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero-desc{font-size:1rem;color:var(--muted);line-height:1.75;max-width:520px;margin-bottom:32px}
+    /* ── TYPEWRITER ── */
+    .typewriter-wrap{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+    .typewriter-wrap::before{content:'';width:30px;height:1px;background:var(--accent);flex-shrink:0}
+    .typewriter-role{font-family:'Syne',sans-serif;font-size:11px;font-weight:600;
+      letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+    .typewriter-cursor{display:inline-block;width:2px;height:12px;
+      background:var(--accent);margin-left:2px;vertical-align:middle;
+      animation:blink .7s infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+    /* ── ROLE PILLS ── */
+    .role-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+    .role-pill{font-family:'Syne',sans-serif;font-size:.7rem;font-weight:600;
+      letter-spacing:.06em;padding:5px 13px;border-radius:999px;cursor:pointer;
+      border:1px solid transparent;transition:.25s;text-transform:uppercase}
+    .role-pill.it{background:rgba(56,189,248,0.1);color:var(--accent);border-color:rgba(56,189,248,0.25)}
+    .role-pill.web{background:rgba(129,140,248,0.1);color:var(--accent2);border-color:rgba(129,140,248,0.25)}
+    .role-pill.fs{background:rgba(74,222,128,0.1);color:var(--green);border-color:rgba(74,222,128,0.25)}
+    .role-pill.fl{background:rgba(251,191,36,0.1);color:#fbbf24;border-color:rgba(251,191,36,0.25)}
+    .role-pill.active{transform:scale(1.06);box-shadow:0 0 12px rgba(56,189,248,0.25)}
+    .role-pill.it.active{box-shadow:0 0 12px rgba(56,189,248,0.3)}
+    .role-pill.web.active{box-shadow:0 0 12px rgba(129,140,248,0.3)}
+    .role-pill.fs.active{box-shadow:0 0 12px rgba(74,222,128,0.3)}
+    .role-pill.fl.active{box-shadow:0 0 12px rgba(251,191,36,0.3)}
+    .hero-desc{font-size:1rem;color:var(--muted);line-height:1.75;max-width:520px;margin-bottom:32px;
+      transition:opacity .35s ease,transform .35s ease}
+    .hero-desc.switching{opacity:0;transform:translateY(8px)}
     .quote{font-style:italic;font-size:.88rem;color:var(--accent2);
       border-left:2px solid var(--accent2);padding-left:14px;margin-bottom:32px;opacity:.85}
 
@@ -430,13 +456,24 @@
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <p class="hero-eyebrow hero-animate">IT Support Specialist · L2</p>
+        <!-- TYPEWRITER ROLE -->
+        <div class="typewriter-wrap hero-animate">
+          <span class="typewriter-role" id="typewriterText"></span><span class="typewriter-cursor"></span>
+        </div>
+
         <h1 class="hero-animate">Fredente<br/><span class="grad">Tabago</span></h1>
         <p class="quote hero-animate">"You can't deposit EXCUSES"</p>
-        <p class="hero-desc hero-animate">
-          Detail-oriented BSIT graduate with hands-on experience in technical support,
-          database management, and end-user assistance. Remote-ready, self-disciplined,
-          and committed to exceeding SLA targets from day one.
+
+        <!-- ROLE PILLS -->
+        <div class="role-pills hero-animate">
+          <span class="role-pill it active" onclick="setRole(0)">🖥 IT Support</span>
+          <span class="role-pill web" onclick="setRole(1)">🎨 Web Developer</span>
+          <span class="role-pill fs" onclick="setRole(2)">⚙️ Full-Stack Dev</span>
+          <span class="role-pill fl" onclick="setRole(3)">💼 Freelancer</span>
+        </div>
+
+        <p class="hero-desc hero-animate" id="heroDesc">
+          Detail-oriented BSIT graduate with hands-on experience in technical support, systems troubleshooting, and end-user assistance. Remote-ready, self-disciplined, and committed to exceeding SLA targets from day one.
         </p>
         <div class="btn-row hero-animate">
           <a href="#contact" class="btn btn-primary">
@@ -479,8 +516,9 @@
         <div class="avail-badge">Available Now</div>
         <div class="stat-chips">
           <div class="stat-chip"><div class="n">2025</div><div class="l">Graduate</div></div>
-          <div class="stat-chip"><div class="n">L2</div><div class="l">IT Support</div></div>
+          <div class="stat-chip"><div class="n">2+</div><div class="l">Yrs Freelance</div></div>
           <div class="stat-chip"><div class="n">3+</div><div class="l">Projects</div></div>
+          <div class="stat-chip"><div class="n">4</div><div class="l">Roles Ready</div></div>
         </div>
       </div>
     </div>
@@ -501,17 +539,13 @@
     <div class="about-grid fade-up stagger-children">
       <div class="about-card">
         <p style="margin-bottom:16px">
-          I'm a <strong style="color:var(--text)">BSIT graduate</strong> from Isabela State University – Roxas Campus,
-          majoring in Web and Mobile App Development. I'm passionate about solving technical problems and
-          delivering reliable IT support in remote environments.
+          I'm a <strong style="color:var(--text)">BSIT graduate</strong> from Isabela State University – Roxas Campus, majoring in Web and Mobile App Development. I combine technical IT knowledge with real-world web development experience — making me adaptable across support, development, and freelance roles.
         </p>
         <p style="margin-bottom:16px">
-          I bring strong documentation habits, ticket triage experience, and a customer-first mindset
-          developed through both OJT and real-world business operations.
+          Since my third year in college, I've built and deployed full-stack web applications for real clients, handled L2-level IT support during OJT, and managed a remote business operation — giving me a rare blend of <strong style="color:var(--text)">technical depth, client communication, and operational discipline</strong>.
         </p>
         <p>
-          I'm highly disciplined working from home — organized, responsive, and always aiming to
-          exceed SLA expectations. I'm eager to grow as an IT professional in an offshoring environment.
+          I'm highly self-driven, remote-ready, and thrive in environments where I can solve problems independently. Whether the role is IT support, web development, or freelance project work — I bring the same focus: <strong style="color:var(--text)">deliver quality, document everything, and keep improving</strong>.
         </p>
       </div>
       <div class="about-card">
@@ -1102,7 +1136,73 @@
   }, { threshold: 0.2 });
   document.querySelectorAll('.skills-wrap').forEach(el => barObs.observe(el));
 
-  // ── CONTACT FORM ──
+  // ── ROLE DATA ──
+  const ROLES = [
+    {
+      label: 'IT Support Specialist · L2',
+      desc: 'Detail-oriented BSIT graduate with hands-on experience in technical support, systems troubleshooting, Active Directory, and end-user assistance. Remote-ready, self-disciplined, and committed to exceeding SLA targets from day one.',
+      pill: 0
+    },
+    {
+      label: 'Web Developer · Frontend',
+      desc: 'Creative and detail-focused web developer skilled in building responsive, visually polished interfaces using HTML, CSS, and JavaScript. Experienced in translating client requirements into clean, maintainable front-end code.',
+      pill: 1
+    },
+    {
+      label: 'Full-Stack Developer · PHP & MySQL',
+      desc: 'Full-stack developer with 2+ years of freelance experience building complete web applications — from database design and back-end logic in PHP/MySQL, to front-end UI and live deployment. Comfortable owning the entire development lifecycle.',
+      pill: 2
+    },
+    {
+      label: 'Freelance Developer · Project-Based',
+      desc: 'Independent web developer delivering full-cycle projects for local businesses and clients since 2023. Skilled in requirements gathering, system design, payment integration, deployment, and post-launch support — all managed solo.',
+      pill: 3
+    }
+  ];
+
+  let currentRole = 0;
+  let typeTimeout = null;
+  let autoRotate = null;
+
+  function typeText(text, el, cb){
+    el.textContent = '';
+    let i = 0;
+    function next(){
+      if(i < text.length){ el.textContent += text[i++]; typeTimeout = setTimeout(next, 42); }
+      else if(cb) cb();
+    }
+    next();
+  }
+
+  function setRole(idx, auto){
+    clearTimeout(typeTimeout);
+    currentRole = idx;
+    // update pills
+    document.querySelectorAll('.role-pill').forEach((p,i) => p.classList.toggle('active', i===idx));
+    // swap desc with fade
+    const desc = document.getElementById('heroDesc');
+    desc.classList.add('switching');
+    setTimeout(() => {
+      desc.textContent = ROLES[idx].desc;
+      desc.classList.remove('switching');
+    }, 300);
+    // typewriter
+    typeText(ROLES[idx].label, document.getElementById('typewriterText'));
+    // restart auto-rotate
+    if(!auto){ clearInterval(autoRotate); autoRotate = setInterval(autoNext, 4500); }
+  }
+
+  function autoNext(){
+    setRole((currentRole + 1) % ROLES.length, true);
+  }
+
+  // start after loader
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      typeText(ROLES[0].label, document.getElementById('typewriterText'));
+      autoRotate = setInterval(autoNext, 4500);
+    }, 2000);
+  });
   function sendMsg(){
     const name = document.getElementById('fname').value.trim();
     const email = document.getElementById('femail').value.trim();
